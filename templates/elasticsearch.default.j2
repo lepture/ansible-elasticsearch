@@ -1,0 +1,13 @@
+{% if ansible_memtotal_mb > 2048 %}
+ES_HEAP_SIZE={{ (ansible_memtotal_mb / 1024 / 2 + 1) | int }}g
+
+# Heap new generation
+ES_HEAP_NEWSIZE=1g
+
+# Maximum number of open files, defaults to 65535.
+MAX_OPEN_FILES=655350
+
+MAX_LOCKED_MEMORY=unlimited
+{% endif %}
+
+MAX_MAP_COUNT=262144

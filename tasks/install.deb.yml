@@ -1,0 +1,19 @@
+---
+
+- name: Add ElasticSearch Key
+  apt_key: url="{{elasticsearch_key_url}}" state=present
+
+- name: Add ElasticSearch Repository
+  apt_repository: repo="{{elasticsearch_apt_repo}}" state=present
+
+- name: Install ElasticSearch
+  apt: pkg={{item}}
+  with_items: [ elasticsearch ]
+
+- name: Configure limits max_open_files
+  lineinfile:
+    dest=/etc/security/limits.conf
+    regexp='^{{ elasticsearch_user }}     -    nofile    {{ elasticsearch_max_open_files }}'
+    insertafter=EOF
+    line='{{ elasticsearch_user }}     -    nofile    {{ elasticsearch_max_open_files }}'
+  when: elasticsearch_max_open_files is defined
