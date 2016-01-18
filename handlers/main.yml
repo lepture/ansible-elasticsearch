@@ -1,2 +1,5 @@
 ---
-# handlers file for lepture.elastic
+# handlers file for lepture.elasticsearch
+
+- name: elasticsearch restart
+  service: name=elasticsearch state=restarted
