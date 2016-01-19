@@ -2,4 +2,8 @@
 
 - include: install.deb.yml
   when: ansible_os_family == 'Debian'
-  tags: [elasticsearch]
+  tags: [elasticsearch, install]
+
+- include: config.deb.yml
+  when: ansible_os_family == 'Debian'
+  tags: [elasticsearch, config]
