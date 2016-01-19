@@ -1,0 +1,23 @@
+---
+
+- name: Is IK installed
+  stat: path={{ elasticsearch_home_dir }}/plugins/ik/elasticsearch-analysis-ik-{{ elasticsearch_ik_version }}.jar
+  register: plugin_ik
+
+- name: Download IK plugin
+  get_url:
+    url={{ elasticsearch_ik_url }}
+    dest=/tmp/ik.{{ elasticsearch_ik_version }}.zip
+  when: plugin_ik.stat.exists is not defined
+
+- name: Clean IK directory
+  file: path={{ elasticsearch_home_dir }}/plugins/ik state=absent
+  when: plugin_ik.stat.exists is not defined
+
+- name: Ensure IK directory
+  file: path={{ elasticsearch_home_dir }}/plugins/ik state=directory
+  when: plugin_ik.stat.exists is not defined
+
+- name: Extract IK plugin
+  unarchive: src=/tmp/ik.{{ elasticsearch_ik_version }}.zip dest={{ elasticsearch_home_dir }}/plugins/ik copy=no
+  when: plugin_ik.stat.exists is not defined

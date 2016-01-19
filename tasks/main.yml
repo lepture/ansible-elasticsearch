@@ -7,6 +7,10 @@
 - include: plugin.yml
   tags: [elasticsearch, install]
 
+- include: ik.yml
+  tags: [elasticsearch, install]
+  when: elasticsearch_ik_enabled
+
 - include: config.deb.yml
   when: ansible_os_family == 'Debian'
   tags: [elasticsearch, config]
