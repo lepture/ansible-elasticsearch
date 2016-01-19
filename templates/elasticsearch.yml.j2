@@ -54,6 +54,12 @@ bootstrap.mlockall: true
 # ---------------------------------- Network -----------------------------------
 #
 # Set the bind address to a specific IP (IPv4 or IPv6):
+{% if elasticsearch_network_bind_host is defined %}
+network.bind_host: {{ elasticsearch_network_bind_host }}
+{% endif %}
+{% if elasticsearch_network_publish_host is defined %}
+network.publish_host: {{ elasticsearch_network_publish_host }}
+{% endif %}
 {% if elasticsearch_network_host is defined %}
 network.host: {{ elasticsearch_network_host }}
 {% endif %}
