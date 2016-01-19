@@ -19,9 +19,12 @@ cluster.name: {{ elasticsearch_cluster_name }}
 # ------------------------------------ Node ------------------------------------
 #
 # Use a descriptive name for the node:
-#
-# node.name: node-1
-#
+{% if elasticsearch_node_name is defined %}
+node.name: {{ elasticsearch_node_name }}
+{% else %}
+node.name: {{ ansible_fqdn }}
+{% endif %}
+
 # Add custom attributes to the node:
 #
 # node.rack: r1
@@ -51,9 +54,10 @@ bootstrap.mlockall: true
 # ---------------------------------- Network -----------------------------------
 #
 # Set the bind address to a specific IP (IPv4 or IPv6):
-#
-# network.host: 192.168.0.1
-#
+{% if elasticsearch_network_host is defined %}
+network.host: {{ elasticsearch_network_host }}
+{% endif %}
+
 # Set a custom port for HTTP:
 #
 # http.port: 9200
@@ -76,9 +80,10 @@ bootstrap.mlockall: true
 #
 # Pass an initial list of hosts to perform discovery when new node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
-#
-# discovery.zen.ping.unicast.hosts: ["host1", "host2"]
-#
+{% if elasticsearch_discovery_zen_ping_unicast_hosts is defined %}
+discovery.zen.ping.unicast.hosts: {{ elasticsearch_discovery_zen_ping_unicast_hosts }}
+{% endif %}
+
 # Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
 #
 # discovery.zen.minimum_master_nodes: 3
