@@ -1,0 +1,5 @@
+---
+
+- name: Install plugins
+  shell: bin/plugin install {{ item }} chdir={{ elasticsearch_home_dir }}
+  with_items: elasticsearch_plugins
