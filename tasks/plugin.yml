@@ -1,5 +1,14 @@
 ---
 
+- name: Remove plugins
+  shell: bin/plugin remove {{item}} chdir={{elasticsearch_home_dir}}
+  with_items: elasticsearch_remove_plugins
+
 - name: Install plugins
-  shell: bin/plugin install {{ item }} chdir={{ elasticsearch_home_dir }}
+  shell: bin/plugin install {{item}} chdir={{elasticsearch_home_dir}}
   with_items: elasticsearch_plugins
+  register: plugins_installed
+  changed_when: "'Installed' in plugins_installed.stdout"
+  failed_when: "plugins_installed.rc != 0 and plugins_installed.stdout.find('already exists. To update the plugin') == -1"
+  notify: elasticsearch restart
+  ignore_errors: yes

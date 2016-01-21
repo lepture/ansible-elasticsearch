@@ -9,6 +9,7 @@ elasticsearch_max_open_files: 65535
 elasticsearch_cluster_name: elasticsearch
 elasticsearch_home_dir: /usr/share/elasticsearch
 elasticsearch_plugins: []
+elasticsearch_remove_plugins: []
 
 elasticsearch_ik_enabled: no
 elasticsearch_ik_url: https://github.com/lepture/ansible-elasticsearch/releases/download/v0.1.0/elasticsearch-analysis-ik-1.7.0.zip
