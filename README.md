@@ -1,6 +1,6 @@
 # Ansible Elasticsearch
 
-A brief description of the role goes here.
+Ansible role which manage Elasticsearch.
 
 ## Requirements
 
@@ -8,31 +8,38 @@ A brief description of the role goes here.
 - ansiblebit.oracle-java
 
 
-Role Variables
---------------
+## Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Here is the list of all variables and their default values:
 
-Dependencies
-------------
+```
+elasticsearch_user: elasticsearch
+elasticsearch_group: elasticsearch
+elasticsearch_key_url: https://packages.elastic.co/GPG-KEY-elasticsearch
+elasticsearch_apt_repo: "deb http://packages.elastic.co/elasticsearch/2.x/debian stable main"
+elasticsearch_max_open_files: 65535
+elasticsearch_cluster_name: elasticsearch
+elasticsearch_home_dir: /usr/share/elasticsearch
+elasticsearch_plugins: []
+elasticsearch_remove_plugins: []
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+elasticsearch_ik_enabled: no
+elasticsearch_ik_url: https://github.com/lepture/ansible-elasticsearch/releases/download/v0.1.0/elasticsearch-analysis-ik-1.7.0.zip
+elasticsearch_ik_version: 1.7.0
+```
 
-Example Playbook
-----------------
+
+## Usage
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+      - ansiblebit.launchpad-ppa-webupd8
+      - ansiblebit.oracle-java
+      - lepture.elasticsearch
 
 License
 -------
 
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Licensed under the BSD License. Created by [Hsiaoming Yang](http://lepture.com/).
