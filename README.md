@@ -1,5 +1,7 @@
 # Ansible Elasticsearch
 
+[![Ansible Role](https://img.shields.io/ansible/role/7197.svg)](https://galaxy.ansible.com/detail#/role/7197)
+
 Ansible role which manage Elasticsearch.
 
 ## Requirements
