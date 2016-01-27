@@ -1,4 +1,8 @@
+{% if elasticsearch_heap_size is defined %}
+ES_HEAP_SIZE={{ elasticsearch_heap_size }}
+{% else %}
 ES_HEAP_SIZE={{ (ansible_memtotal_mb / 2) | int }}m
+{% endif %}
 
 # Heap new generation
 ES_HEAP_NEWSIZE={{ (ansible_memtotal_mb * 0.4) | int }}m

@@ -1,5 +1,8 @@
 ---
 
+- name: Install unzip
+  apt: name=unzip state=present
+
 - name: Is IK installed
   stat: path={{ elasticsearch_home_dir }}/plugins/ik/elasticsearch-analysis-ik-{{ elasticsearch_ik_version }}.jar
   register: plugin_ik
