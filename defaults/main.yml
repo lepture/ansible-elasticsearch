@@ -11,5 +11,5 @@ elasticsearch_plugins: []
 elasticsearch_remove_plugins: []
 
 elasticsearch_ik_enabled: no
-elasticsearch_ik_url: https://github.com/lepture/ansible-elasticsearch/releases/download/v0.1.0/elasticsearch-analysis-ik-1.7.0.zip
-elasticsearch_ik_version: 1.7.0
+elasticsearch_ik_url: https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v1.9.0/elasticsearch-analysis-ik-1.9.0.zip
+elasticsearch_ik_version: 1.9.0
